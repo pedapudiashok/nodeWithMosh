@@ -1,0 +1,5 @@
+1.how export functions using exports
+
+2.multiple functions export and import
+
+3.
