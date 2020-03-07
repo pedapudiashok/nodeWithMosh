@@ -1,4 +1,4 @@
-/* MongoDB connection with Validation */
+/* MongoDB connection */
 
 const express = require('express');
 const app = express();
@@ -16,7 +16,7 @@ mongoose.connect(AtlasURL,{ useNewUrlParser: true })
     })
 
     const courseSchema = new mongoose.Schema({
-        name: {type:String, required:true},
+        name: String,
         author : String,
         tags:[String],
         date: {type:Date,default: Date.now},
@@ -25,7 +25,7 @@ mongoose.connect(AtlasURL,{ useNewUrlParser: true })
 
     const Course = mongoose.model('course',courseSchema);
     const course = new Course({
-        //name:"React Course",
+        name:"React Course",
         author:"Ashok",
         tags:['React','frontend'],
         isPublised: true
@@ -36,7 +36,7 @@ mongoose.connect(AtlasURL,{ useNewUrlParser: true })
     console.log('Result',result);
     }
 
-    SavingDoc();
+    //SavingDoc();
 
     async function getCourse(pgNo,pgSize,id=0) {
         const result = await Course.find({name:/.*r.*/i}).skip( (pgNo-1) * pgSize).limit(pgSize).select({name:1,author:1,tags:1,_id:false})
@@ -85,7 +85,7 @@ mongoose.connect(AtlasURL,{ useNewUrlParser: true })
             })
     }
 
-    //updateCourse('5e6260b657efb4520dbe35c9') //5e6260b657efb4520dbe35c9
+    updateCourse('5e6260b657efb4520dbe35c9') //5e6260b657efb4520dbe35c9
 
 
 
